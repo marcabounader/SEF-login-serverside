@@ -28,7 +28,7 @@ if($sql->num_rows()==0){
   $sql->bind_result($id,$first_name,$hashed_password);
   $sql->fetch();
   if(password_verify($password,$hashed_password)){
-    header("Set-Cookie: name=$first_name; expires=8600; path=/; samesite=None; secure");
+    header("Set-Cookie: name=$first_name; Max-Age=2592000; path=/; samesite=None; secure");
     $data['status']="1";
     $data = array("id"=>$id,"first_name"=>$first_name);
     echo json_encode($data);
