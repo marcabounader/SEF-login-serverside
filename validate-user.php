@@ -4,7 +4,7 @@ include('Config\db_connect.php');
 
 $id=$first_name=$email=$password="";
 header("Content-type: application/json; charset=utf-8");
-header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
+header('Access-Control-Allow-Origin: http://localhost:5500');
 header('Access-Control-Allow-Methods: POST');
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
@@ -28,7 +28,7 @@ if($sql->num_rows()==0){
   $sql->bind_result($id,$first_name,$hashed_password);
   $sql->fetch();
   if(password_verify($password,$hashed_password)){
-    header("Set-Cookie: name=$first_name; Max-Age=2592000; path=/; samesite=None; secure");
+    header("Set-Cookie: name=$first_name; Max-Age=2592000; path=/; samesite=None; secure; Domain=localhost");
     $data['status']="1";
     $data = array("id"=>$id,"first_name"=>$first_name);
     echo json_encode($data);
